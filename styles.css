@@ -2,6 +2,8 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   padding: 20px;
+  background-image: url("./assets/background.jpg");
+  margin-top: 3rem;
 }
 
 @keyframes float {
@@ -19,14 +21,15 @@ body {
 h1 {
   background: linear-gradient(
     to right,
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    indigo,
-    violet
+    #ff4c4c,
+    #ffb84d,
+    #ffff66,
+    #66ff66,
+    #4d99ff,
+    #cc66ff,
+    #ff66cc
   );
+
   -webkit-background-clip: text;
   color: transparent;
   animation: float 3s ease-in-out infinite;
@@ -46,6 +49,7 @@ h1 {
   margin: 10px;
   cursor: pointer;
   border-radius: 5px;
+  border: 2px solid #fff;
 }
 
 button {
