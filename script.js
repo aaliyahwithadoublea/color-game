@@ -27,7 +27,7 @@ function nextRound() {
 
   colorBox.style.backgroundColor = targetColor;
 
-  // Randomize color options and display them
+  //display colors randomly
   const shuffledColors = shuffleArray(colors);
   colorOptions.innerHTML = "";
 
@@ -43,26 +43,34 @@ function nextRound() {
 
 // Function to check if the guessed color is correct
 function checkGuess(guess) {
+  gameStatus.classList.remove("correct", "wrong");
+
   if (guess === targetColor) {
     score++;
-    gameStatus.textContent = "Correct!";
-    gameStatus.style.color = "green";
+    gameStatus.textContent = "Correct! ";
+    gameStatus.classList.add("correct");
   } else {
     gameStatus.textContent = "Wrong! Try again.";
-    gameStatus.style.color = "red";
+    gameStatus.classList.add("wrong");
   }
+
   scoreDisplay.textContent = `Score: ${score}`;
 
-  setTimeout(nextRound, 1000);
+  setTimeout(() => {
+    gameStatus.classList.remove("correct", "wrong");
+  }, 1000);
+
+  setTimeout(nextRound, 1300);
 }
+
 
 // Function to shuffle the colors array
 function shuffleArray(arr) {
   return arr.sort(() => Math.random() - 0.5);
 }
 
-// Event listener for the "New Game" button
+
 newGameButton.addEventListener("click", startNewGame);
 
-// Start the first game when the page loads
+
 startNewGame();

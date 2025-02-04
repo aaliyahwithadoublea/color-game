@@ -62,7 +62,14 @@ button {
 #gameStatus {
   margin-top: 20px;
   font-size: 20px;
+  display: inline-block;
   font-weight: bold;
+  padding: 5px;
+  border-radius: 5px;
+  width: auto;
+  height: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 #score {
@@ -118,12 +125,15 @@ button {
 /* Animations */
 .correct {
   animation: fadeIn 1s ease-in-out;
-  color: rgb(67, 255, 67);
+  color: green;
+  background-color: rgb(162, 247, 162);
+  height: 3rem;
 }
 
 .wrong {
   animation: fadeOut 1s ease-in-out;
   color: red;
+  background-color: rgb(243, 110, 110);
 }
 
 @keyframes fadeIn {
