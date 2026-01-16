@@ -2,31 +2,115 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Color Guessing Game</title>
-
+    <meta name="description" content="Test your color perception skills with this advanced color matching game. Challenge yourself with multiple difficulty levels and track your progress!" />
+    <title>Color Master - Advanced Color Matching Game</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>Guess the Color!</h1>
+    <div class="background-overlay"></div>
+    
+    <div class="container">
+      <!-- Header Section -->
+      <header class="game-header">
+        <h1 class="game-title">
+          <span class="title-icon">🎨</span>
+          Color Master
+        </h1>
+        <p class="game-subtitle">Test your color perception skills</p>
+      </header>
 
-    <div id="colorBox" data-testid="colorBox"></div>
+      <!-- Stats Dashboard -->
+      <div class="stats-dashboard">
+        <div class="stat-card">
+          <div class="stat-label">Score</div>
+          <div class="stat-value" id="score" data-testid="score">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">High Score</div>
+          <div class="stat-value" id="highScore">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Streak</div>
+          <div class="stat-value" id="streak">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Accuracy</div>
+          <div class="stat-value" id="accuracy">0%</div>
+        </div>
+      </div>
 
-    <div id="colorOptions" data-testid="colorOptions"></div>
+      <!-- Game Controls -->
+      <div class="game-controls">
+        <div class="difficulty-selector">
+          <label for="difficulty">Difficulty:</label>
+          <select id="difficulty" data-testid="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+            <option value="expert">Expert</option>
+          </select>
+        </div>
+        <button id="newGameButton" class="btn-primary" data-testid="newGameButton">
+          <span class="btn-icon">🔄</span>
+          New Game
+        </button>
+      </div>
 
-    <div id="gameInstructions" data-testid="gameInstructions" style="color: #fff; font-size: 0.9rem;">
-      Click on the color that matches the one in the box!
+      <!-- Timer Display -->
+      <div class="timer-container">
+        <div class="timer-bar">
+          <div class="timer-fill" id="timerFill"></div>
+        </div>
+        <div class="timer-text" id="timer">30s</div>
+      </div>
+
+      <!-- Color Display -->
+      <div class="color-display-section">
+        <div class="color-box-container">
+          <div id="colorBox" class="color-box" data-testid="colorBox">
+            <div class="color-hex" id="colorHex"></div>
+          </div>
+        </div>
+        <p class="game-instructions" data-testid="gameInstructions">
+          Select the color that matches the one displayed above!
+        </p>
+      </div>
+
+      <!-- Color Options -->
+      <div id="colorOptions" class="color-options-grid" data-testid="colorOptions"></div>
+
+      <!-- Game Status -->
+      <div id="gameStatus" class="game-status" data-testid="gameStatus"></div>
+
+      <!-- Game Over Modal -->
+      <div id="gameOverModal" class="modal">
+        <div class="modal-content">
+          <h2 class="modal-title">Game Over!</h2>
+          <div class="modal-stats">
+            <div class="modal-stat">
+              <span class="modal-stat-label">Final Score:</span>
+              <span class="modal-stat-value" id="finalScore">0</span>
+            </div>
+            <div class="modal-stat">
+              <span class="modal-stat-label">Best Streak:</span>
+              <span class="modal-stat-value" id="bestStreak">0</span>
+            </div>
+            <div class="modal-stat">
+              <span class="modal-stat-label">Accuracy:</span>
+              <span class="modal-stat-value" id="finalAccuracy">0%</span>
+            </div>
+          </div>
+          <button id="playAgainButton" class="btn-primary btn-large">
+            <span class="btn-icon">🎮</span>
+            Play Again
+          </button>
+        </div>
+      </div>
     </div>
-
-    <div id="gameStatus" data-testid="gameStatus"></div>
-
-    <div id="score" data-testid="score" style="color: #fff;">Score: 0</div>
-
-    <button id="newGameButton" data-testid="newGameButton">
-      Start a New Game
-    </button>
 
     <script src="script.js"></script>
   </body>
