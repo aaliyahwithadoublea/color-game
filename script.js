@@ -36,22 +36,22 @@ let gameState = {
 const difficultySettings = {
   easy: {
     colorVariation: 100,
-    timeLimit: 45,
+    timeLimit: 60,
     numOptions: 4
   },
   medium: {
     colorVariation: 60,
-    timeLimit: 30,
+    timeLimit: 45,
     numOptions: 6
   },
   hard: {
     colorVariation: 30,
-    timeLimit: 20,
+    timeLimit: 35,
     numOptions: 8
   },
   expert: {
     colorVariation: 15,
-    timeLimit: 15,
+    timeLimit: 25,
     numOptions: 10
   }
 };
@@ -62,7 +62,10 @@ function init() {
   newGameButton.addEventListener("click", startNewGame);
   playAgainButton.addEventListener("click", () => {
     gameOverModal.classList.remove("show");
-    startNewGame();
+    // Small delay to ensure modal closes before starting new game
+    setTimeout(() => {
+      startNewGame();
+    }, 100);
   });
   difficultySelect.addEventListener("change", (e) => {
     gameState.difficulty = e.target.value;
@@ -129,13 +132,26 @@ function shuffleArray(array) {
 
 // Start new game
 function startNewGame() {
+  // Clear any existing timer first
+  clearTimer();
+  
+  // Close modal if it's open
+  gameOverModal.classList.remove("show");
+  
+  // Reset game state
   gameState.score = 0;
   gameState.streak = 0;
   gameState.totalCorrect = 0;
   gameState.totalAttempts = 0;
   gameState.isGameActive = true;
+  gameState.timeRemaining = difficultySettings[gameState.difficulty].timeLimit;
+  
+  // Clear game status
   gameStatus.textContent = "";
   gameStatus.classList.remove("correct", "wrong");
+  
+  // Clear color options
+  colorOptions.innerHTML = "";
   
   updateDisplay();
   nextRound();
@@ -144,6 +160,9 @@ function startNewGame() {
 // Start next round
 function nextRound() {
   if (!gameState.isGameActive) return;
+  
+  // Clear any existing timer before starting new round
+  clearTimer();
   
   const settings = difficultySettings[gameState.difficulty];
   gameState.timeRemaining = settings.timeLimit;
